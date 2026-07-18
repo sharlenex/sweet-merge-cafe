@@ -1,0 +1,7 @@
+# 仅发布运行游戏所需的资源，不提交生成过程中的大尺寸源图。
+assets/*-source.png
+assets/*-alpha.png
+
+# 本地工具产生的缓存。
+__pycache__/
+*.pyc

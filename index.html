@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="theme-color" content="#f7b4a4" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="甜甜合伙人" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>甜甜合伙人</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="polish.css" />
+  <link rel="stylesheet" href="features.css" />
+</head>
+<body>
+  <aside id="pwaHint" class="pwa-hint hidden" role="status"><span>📲 在 iPad 的 Safari 点击「分享」→「添加到主屏幕」，即可像 App 一样全屏游玩。</span><button id="closePwaHint" aria-label="关闭提示">×</button></aside>
+  <main class="app">
+    <header>
+      <div class="brand"><span class="logo">☕</span><div><small>🍰 今日营业中</small><h1>甜甜合伙人</h1></div></div>
+      <div class="stats">
+        <span class="stat-rank" title="店铺等级与装修经验">Lv.<b id="playerLevel">1</b><small id="xpProgress">0/30 XP</small></span>
+        <span class="stat-level" title="装修星星">⭐ <b id="stars">0</b></span>
+        <button id="energyInfo" class="stat-energy" title="查看体力来源">⚡ <b id="energy">40</b><small id="energyTimer">已满</small></button>
+        <span class="stat-coins" title="金币">🪙 <b id="coins">120</b></span>
+        <button id="shopBtn" class="stat-gems" title="钻石商店">💎 <b id="gems">20</b></button>
+      </div>
+    </header>
+
+    <nav class="view-tabs">
+      <button class="active" data-view="merge">🧺 合成厨房</button>
+      <button data-view="cafe">🏡 装修咖啡店<span id="cafeBadge" class="nav-badge hidden">!</span></button>
+      <button data-view="tasks">📋 任务<span id="taskBadge" class="nav-badge hidden">!</span></button>
+    </nav>
+
+    <section class="orders merge-view" aria-label="顾客订单">
+      <div class="section-title"><span>今日订单</span><small>完成订单，装饰我们的咖啡店</small></div>
+      <div id="orderList" class="order-list"></div>
+    </section>
+
+    <section class="game-panel merge-view">
+      <div class="machine-reward"><span>🎁 装修机器奖励</span><div><i><em id="machineRewardBar"></em></i><small id="machineRewardText">每完成 1 项装修获得基础机器</small></div></div>
+      <div class="toolbar">
+        <button id="sellBtn" disabled>出售</button>
+        <button id="undoBtn" disabled>撤销</button>
+      </div>
+      <div id="board" class="board" aria-label="合成棋盘"></div>
+      <div id="hint" class="hint">点击棋盘里的机器生产素材；拖动机器可移动或合成升级</div>
+    </section>
+
+    <section id="cafeView" class="cafe-view hidden">
+      <div class="cafe-heading"><div><small>我的店铺</small><h2 id="cafeName">暖糖咖啡屋</h2></div><span>⭐ <b id="cafeStars">0</b></span></div>
+      <div id="chapterNav" class="chapter-nav"></div>
+      <div class="cafe-scene" id="cafeScene"></div>
+      <div class="decor-list" id="decorList"></div>
+    </section>
+
+    <section id="tasksView" class="tasks-view hidden">
+      <div class="section-title"><span>店长任务</span><small>任务是钻石的主要免费来源</small></div>
+      <div id="taskList" class="task-list"></div>
+    </section>
+
+    <footer>
+      <button id="saveBtn">💾 导出存档</button>
+      <label class="file-button">📂 导入存档<input id="loadInput" type="file" accept="application/json,.json" /></label>
+      <button id="resetBtn">重新开店</button>
+    </footer>
+  </main>
+  <div id="modal" class="modal hidden"><div class="modal-card"><button id="closeModal" class="modal-close">×</button><div id="modalContent"></div></div></div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="game.js"></script>
+  <script src="pwa.js"></script>
+</body>
+</html>
