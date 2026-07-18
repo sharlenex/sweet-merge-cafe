@@ -3,8 +3,8 @@
   const close = document.querySelector('#closePwaHint');
   const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  const artCache = 'sweet-merge-art-v2';
-  const warmKey = 'sweet-merge-art-warmed-v2';
+  const artCache = 'sweet-merge-art-v3';
+  const warmKey = 'sweet-merge-art-warmed-v3';
   const warmImages = [];
   const itemAssets = [
     ...['coffee', 'cake', 'fruit'].flatMap(type => Array.from({ length: 6 }, (_, level) => `assets/items/${type}-${level}.png`)),
@@ -12,7 +12,7 @@
   ];
   const artAssets = [
     ...itemAssets,
-    ...['coffee', 'cake', 'fruit'].flatMap(type => Array.from({ length: 12 }, (_, level) => `assets/machines/${type}-${level}.png`)),
+    ...['coffee', 'cake', 'fruit', 'tea', 'bread', 'icecream', 'chocolate'].flatMap(type => Array.from({ length: 12 }, (_, level) => `assets/machines/${type}-${level}.png`)),
     ...Array.from({ length: 3 }, (_, i) => `assets/characters/customer-${i}.png`),
     ...Array.from({ length: 80 }, (_, i) => `assets/decor/decor-${i}.png`),
     'assets/cafe-background.png', 'assets/scene-terrace.png', 'assets/scene-bakery.png', 'assets/scene-garden.png'

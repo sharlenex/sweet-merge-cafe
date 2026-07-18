@@ -154,6 +154,24 @@ def split_generated_chain(name: str):
         fit_square(keep_primary_component(source.crop(box))).save(out_dir / f"{name}-{level}.png")
 
 
+def split_generated_machine(name: str):
+    """Split one 4×3 generated machine sheet into 12 complete machine sprites."""
+    source = Image.open(ROOT / "machine-sheets" / f"{name}-alpha.png").convert("RGBA")
+    out_dir = ROOT / "machines"
+    out_dir.mkdir(exist_ok=True)
+    cell_w = source.width / 4
+    cell_h = source.height / 3
+    inset_x = round(cell_w * 0.035)
+    inset_y = round(cell_h * 0.04)
+    for level in range(12):
+        row, col = divmod(level, 4)
+        box = (
+            round(col * cell_w + inset_x), round(row * cell_h + inset_y),
+            round((col + 1) * cell_w - inset_x), round((row + 1) * cell_h - inset_y),
+        )
+        fit_square(source.crop(box), 512, 6).save(out_dir / f"{name}-{level}.png")
+
+
 if __name__ == "__main__":
     split_items()
     split_characters()
@@ -162,3 +180,5 @@ if __name__ == "__main__":
     for name in ("tea", "bread", "icecream", "chocolate"):
         if (ROOT / f"{name}-levels-alpha.png").exists():
             split_generated_chain(name)
+        if (ROOT / "machine-sheets" / f"{name}-alpha.png").exists():
+            split_generated_machine(name)

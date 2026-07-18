@@ -1,6 +1,7 @@
-const APP_CACHE = 'sweet-merge-shell-v12';
-const ART_CACHE = 'sweet-merge-art-v2';
+const APP_CACHE = 'sweet-merge-shell-v13';
+const ART_CACHE = 'sweet-merge-art-v3';
 const TYPES = ['coffee', 'cake', 'fruit'];
+const MACHINE_TYPES = ['coffee', 'cake', 'fruit', 'tea', 'bread', 'icecream', 'chocolate'];
 const GENERATED_ITEM_TYPES = ['tea', 'bread', 'icecream', 'chocolate'];
 const CORE = [
   './', './index.html', './style.css', './polish.css', './features.css', './game.js', './pwa.js', './manifest.webmanifest'
@@ -9,7 +10,7 @@ const ITEM_ASSETS = [
   ...TYPES.flatMap(type => Array.from({ length: 6 }, (_, level) => `./assets/items/${type}-${level}.png`)),
   ...GENERATED_ITEM_TYPES.flatMap(type => Array.from({ length: 15 }, (_, level) => `./assets/items/${type}-${level}.png`))
 ];
-const MACHINE_ASSETS = TYPES.flatMap(type => Array.from({ length: 12 }, (_, level) => `./assets/machines/${type}-${level}.png`));
+const MACHINE_ASSETS = MACHINE_TYPES.flatMap(type => Array.from({ length: 12 }, (_, level) => `./assets/machines/${type}-${level}.png`));
 const EXTRA_ASSETS = [
   './assets/cafe-background.png', './assets/scene-terrace.png', './assets/scene-bakery.png', './assets/scene-garden.png',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png', './assets/icons/apple-touch-icon.png',

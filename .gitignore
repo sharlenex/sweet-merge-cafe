@@ -2,6 +2,7 @@
 assets/*-source.png
 assets/*-alpha.png
 assets/decor-sheets/
+assets/machine-sheets/
 
 # 本地工具产生的缓存。
 __pycache__/
