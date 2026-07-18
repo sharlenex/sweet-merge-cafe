@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sweet-merge-cafe-v5';
+const CACHE_NAME = 'sweet-merge-cafe-v6';
 const TYPES = ['coffee', 'cake', 'fruit'];
 const GENERATED_ITEM_TYPES = ['tea', 'bread', 'icecream', 'chocolate'];
 const CORE = [
