@@ -99,6 +99,25 @@ def split_decor():
             fit_square(source.crop(box), 512, 10).save(out_dir / f"decor-{row * 3 + col}.png")
 
 
+def split_decor_chapter(chapter: int):
+    """Split one 5×4 generated decor sheet into 20 named chapter decoration sprites."""
+    source = Image.open(ROOT / "decor-sheets" / f"chapter-{chapter}-alpha.png").convert("RGBA")
+    out_dir = ROOT / "decor"
+    out_dir.mkdir(exist_ok=True)
+    cell_w = source.width / 5
+    cell_h = source.height / 4
+    inset_x = round(cell_w * 0.035)
+    inset_y = round(cell_h * 0.035)
+    for row in range(4):
+        for col in range(5):
+            box = (
+                round(col * cell_w + inset_x), round(row * cell_h + inset_y),
+                round((col + 1) * cell_w - inset_x), round((row + 1) * cell_h - inset_y),
+            )
+            index = chapter * 20 + row * 5 + col
+            fit_square(source.crop(box), 256, 6).save(out_dir / f"decor-{index}.png")
+
+
 def split_machines():
     out_dir = ROOT / "machines"
     out_dir.mkdir(exist_ok=True)

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sweet-merge-cafe-v10';
+const CACHE_NAME = 'sweet-merge-cafe-v11';
 const TYPES = ['coffee', 'cake', 'fruit'];
 const GENERATED_ITEM_TYPES = ['tea', 'bread', 'icecream', 'chocolate'];
 const CORE = [
@@ -12,7 +12,7 @@ const ITEM_ASSETS = [
 ];
 const MACHINE_ASSETS = TYPES.flatMap(type => Array.from({ length: 12 }, (_, level) => `./assets/machines/${type}-${level}.png`));
 const EXTRA_ASSETS = [
-  ...Array.from({ length: 6 }, (_, i) => `./assets/decor/decor-${i}.png`),
+  ...Array.from({ length: 80 }, (_, i) => `./assets/decor/decor-${i}.png`),
   ...Array.from({ length: 3 }, (_, i) => `./assets/characters/customer-${i}.png`)
 ];
 
