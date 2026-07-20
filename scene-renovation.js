@@ -36,8 +36,8 @@ const SCENE_ASSET_MAPS=[
 // Exact cutouts from the approved Warm Sugar Café target illustration.  Each
 // task reveals only its own region over the matching empty-room base image.
 const WARM_TARGET_CUTS=[
-  [{clip:'polygon(0 52%,100% 48%,100% 100%,0 100%)',z:1}],
-  [{clip:'polygon(0 0,100% 0,100% 8%,0 8%)',z:2}],
+  [],
+  [],
   [],
   [{clip:'polygon(0 7%,11% 7%,11% 39%,0 39%)',z:4},{clip:'polygon(20% 7%,34% 7%,34% 39%,20% 39%)',z:4}],
   [{clip:'polygon(0 14%,17% 14%,17% 37%,0 37%)',z:5}],
@@ -61,21 +61,23 @@ const WARM_TARGET_CUTS=[
 // Every completed task reveals a region of its own chapter's final painting.
 // There are no loose cross-chapter furniture stickers in this renderer.
 const TERRACE_TARGET_CUTS=[
-  [{clip:'polygon(0 44%,100% 39%,100% 88%,0 88%)',z:1}],[{clip:'polygon(0 80%,56% 80%,56% 100%,0 100%)',z:2}],[],[{clip:'polygon(0 24%,38% 24%,38% 63%,0 63%)',z:5}],
+  [{clip:'polygon(0 44%,100% 39%,100% 80%,0 80%)',z:1,image:'terrace-cafe-base.png'}],
+  [{clip:'polygon(0 79%,58% 79%,58% 100%,0 100%)',z:2,image:'terrace-cafe-base.png'}],
+  [],[{clip:'polygon(0 24%,38% 24%,38% 63%,0 63%)',z:5}],
   [{clip:'polygon(2% 32%,23% 32%,23% 49%,2% 49%)',z:7}],[{clip:'polygon(0 43%,33% 43%,33% 63%,0 63%)',z:7}],[{clip:'polygon(0 6%,42% 6%,42% 31%,0 31%)',z:5}],[{clip:'polygon(28% 12%,69% 12%,69% 46%,28% 46%)',z:4}],
   [{clip:'polygon(0 14%,75% 14%,75% 29%,0 29%)',z:8}],[{clip:'polygon(20% 35%,45% 35%,45% 52%,20% 52%)',z:7}],[{clip:'polygon(38% 42%,70% 42%,70% 60%,38% 60%)',z:9}],[{clip:'polygon(46% 58%,93% 58%,93% 79%,46% 79%)',z:10}],
   [{clip:'polygon(70% 25%,100% 25%,100% 49%,70% 49%)',z:8}],[{clip:'polygon(73% 40%,100% 40%,100% 58%,73% 58%)',z:8}],[{clip:'polygon(82% 31%,96% 31%,96% 50%,82% 50%)',z:10}],[{clip:'polygon(70% 49%,90% 49%,90% 61%,70% 61%)',z:11}],
   [{clip:'polygon(69% 73%,94% 73%,94% 96%,69% 96%)',z:8}],[{clip:'polygon(0 73%,22% 73%,22% 96%,0 96%)',z:8}],[{clip:'polygon(0 51%,30% 51%,30% 66%,0 66%)',z:7}],[{clip:'polygon(39% 73%,66% 73%,66% 96%,39% 96%)',z:8}]
 ];
 const BAKERY_TARGET_CUTS=[
-  [{clip:'polygon(0 32%,100% 32%,100% 100%,0 100%)',z:1}],[{clip:'polygon(0 0,100% 0,100% 16%,0 16%)',z:5}],[{clip:'polygon(0 5%,27% 5%,27% 45%,0 45%)',z:6}],[{clip:'polygon(0 19%,17% 19%,17% 35%,0 35%)',z:8}],
+  [],[{clip:'polygon(0 0,100% 0,100% 16%,0 16%)',z:5}],[{clip:'polygon(0 5%,27% 5%,27% 45%,0 45%)',z:6}],[{clip:'polygon(0 19%,17% 19%,17% 35%,0 35%)',z:8}],
   [{clip:'polygon(0 34%,21% 34%,21% 56%,0 56%)',z:7}],[{clip:'polygon(18% 14%,39% 14%,39% 44%,18% 44%)',z:6}],[{clip:'polygon(40% 12%,66% 12%,66% 27%,40% 27%)',z:7}],[{clip:'polygon(38% 26%,67% 26%,67% 44%,38% 44%)',z:7}],
   [{clip:'polygon(65% 8%,92% 8%,92% 39%,65% 39%)',z:5}],[{clip:'polygon(73% 15%,91% 15%,91% 40%,73% 40%)',z:8}],[{clip:'polygon(63% 29%,100% 29%,100% 55%,63% 55%)',z:7}],[{clip:'polygon(19% 44%,76% 44%,76% 69%,19% 69%)',z:9}],
   [{clip:'polygon(22% 39%,39% 39%,39% 57%,22% 57%)',z:11}],[{clip:'polygon(49% 44%,68% 44%,68% 56%,49% 56%)',z:11}],[{clip:'polygon(60% 55%,100% 55%,100% 76%,60% 76%)',z:8}],[{clip:'polygon(76% 49%,97% 49%,97% 63%,76% 63%)',z:10}],
   [{clip:'polygon(0 57%,20% 57%,20% 77%,0 77%)',z:8}],[{clip:'polygon(23% 71%,66% 71%,66% 92%,23% 92%)',z:9}],[{clip:'polygon(19% 80%,70% 80%,70% 97%,19% 97%)',z:7}],[{clip:'polygon(75% 84%,100% 84%,100% 100%,75% 100%)',z:8}]
 ];
 const GARDEN_TARGET_CUTS=[
-  [{clip:'polygon(0 80%,100% 80%,100% 100%,0 100%)',z:1}],[{clip:'polygon(14% 39%,92% 39%,92% 85%,14% 85%)',z:2}],[{clip:'polygon(0 4%,100% 4%,100% 31%,0 31%)',z:9}],[{clip:'polygon(0 14%,40% 14%,40% 50%,0 50%)',z:6}],
+  [],[],[{clip:'polygon(0 4%,100% 4%,100% 31%,0 31%)',z:9}],[{clip:'polygon(0 14%,40% 14%,40% 50%,0 50%)',z:6}],
   [{clip:'polygon(0 34%,18% 34%,18% 57%,0 57%)',z:7}],[{clip:'polygon(40% 10%,76% 10%,76% 46%,40% 46%)',z:7}],[{clip:'polygon(51% 25%,70% 25%,70% 46%,51% 46%)',z:8}],[{clip:'polygon(66% 29%,100% 29%,100% 57%,66% 57%)',z:7}],
   [{clip:'polygon(74% 39%,100% 39%,100% 57%,74% 57%)',z:9}],[{clip:'polygon(70% 51%,100% 51%,100% 67%,70% 67%)',z:8}],[{clip:'polygon(80% 57%,100% 57%,100% 74%,80% 74%)',z:8}],[{clip:'polygon(5% 47%,44% 47%,44% 71%,5% 71%)',z:9}],
   [{clip:'polygon(45% 47%,82% 47%,82% 71%,45% 71%)',z:9}],[{clip:'polygon(5% 59%,45% 59%,45% 75%,5% 75%)',z:7}],[{clip:'polygon(44% 59%,82% 59%,82% 75%,44% 75%)',z:7}],[{clip:'polygon(0 65%,19% 65%,19% 86%,0 86%)',z:8}],
@@ -98,7 +100,7 @@ renderCafe=function(){
     const i=start+j;
     if(!state.decor.includes(i))return;
     (TARGET_SCENE_CUTS[c][j]||[]).forEach(cut=>{
-      scene.innerHTML+=`<div class="target-scene-layer" style="--scene-clip:${cut.clip};--scene-z:${cut.z};background-image:url('assets/${TARGET_SCENE_IMAGES[c]}')"></div>`;
+      scene.innerHTML+=`<div class="target-scene-layer" style="--scene-clip:${cut.clip};--scene-z:${cut.z};background-image:url('assets/${cut.image||TARGET_SCENE_IMAGES[c]}')"></div>`;
     });
   });
   $('#decorList').innerHTML=DECORS.slice(start,end).map((d,j)=>{

@@ -1,7 +1,7 @@
 /* Fixed base rooms with individual transparent furnishing layers. */
 .cafe-scene{aspect-ratio:9/16;min-height:0!important;height:auto;background-size:100% 100%!important}
 .cafe-scene.chapter-0{background:linear-gradient(rgba(255,244,219,.02),rgba(173,112,83,.02)),url("assets/warm-cafe-base.png") center/cover}
-.cafe-scene.chapter-1{background:linear-gradient(rgba(255,214,185,.02),rgba(132,89,150,.02)),url("assets/terrace-cafe-base.png") center/cover}
+.cafe-scene.chapter-1{background:linear-gradient(rgba(255,214,185,.02),rgba(132,89,150,.02)),url("assets/terrace-cafe-raw-base.png") center/cover}
 .cafe-scene.chapter-2{background:linear-gradient(rgba(255,234,183,.02),rgba(140,88,49,.02)),url("assets/bakery-cafe-base.png") center/cover}
 .cafe-scene.chapter-3{background:linear-gradient(rgba(211,247,211,.02),rgba(93,171,143,.02)),url("assets/garden-cafe-base.png") center/cover}
 .scene-progress{position:absolute;z-index:9;right:12px;top:14px;padding:6px 10px;border:2px solid #fff;border-radius:14px;background:rgba(255,250,229,.92);box-shadow:0 3px 0 rgba(121,82,47,.22);color:#765342;font-size:11px;font-weight:900}
