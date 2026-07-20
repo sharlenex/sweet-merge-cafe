@@ -1,4 +1,5 @@
 /* Target-scene chapters: a cohesive room slowly comes into focus as projects finish. */
+.cafe-scene.chapter-0{background:linear-gradient(rgba(255,244,219,.05),rgba(173,112,83,.05)),url("assets/scene-warm-v2.png") center/cover}
 .cafe-scene.chapter-1{background:linear-gradient(rgba(255,214,185,.05),rgba(132,89,150,.05)),url("assets/scene-terrace-v2.png") center/cover}
 .cafe-scene.chapter-2{background:linear-gradient(rgba(255,234,183,.04),rgba(140,88,49,.04)),url("assets/scene-bakery-v2.png") center/cover}
 .cafe-scene.chapter-3{background:linear-gradient(rgba(211,247,211,.04),rgba(93,171,143,.04)),url("assets/scene-garden-v2.png") center/cover}
