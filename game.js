@@ -32,6 +32,15 @@ const SCENE_COMPOSITIONS=[
   {0:[7,42,26,12],1:[43,58,25,8],3:[63,36,25,10],6:[69,8,23,8],7:[31,43,19,8],9:[52,42,20,11],10:[16,42,16,8],14:[75,22,17,7],15:[61,48,20,9],18:[26,42,18,9],19:[9,43,17,10]},
   {0:[7,41,26,12],1:[43,58,23,8],3:[63,35,25,10],5:[18,41,21,9],6:[71,8,25,8],7:[33,45,19,8],9:[52,42,20,11],11:[25,41,18,8],15:[69,42,21,9],18:[76,25,18,7],19:[9,43,17,10]}
 ];
+// Chapters 2-4 use a target-scene composition. Tasks reveal a cohesive café
+// instead of stacking unrelated furniture stickers over the room.
+const TARGET_SCENE_TASKS=[
+  null,
+  ['蜂蜜石材露台地坪','木质入口台阶','弧形玻璃护栏','薄荷柠檬饮品吧','柠檬水分配器','甜品冷藏展示柜','柠檬花顶棚花箱','木质花藤凉棚','暖光串灯','水果服务台','后排藤编双人座','前排藤编双人座','鲜花拍照拱门','甜品开放麦小舞台','麦克风与支架','舞台小灯笼','欢迎黑板','入口花盆组','薄荷色展示柜门板','中央花卉盆栽'],
+  ['粉色花边圆地毯','花瓣吊灯','烤炉前操作台','粉砖拱形烤炉','面包冷却架','香料与原料柜','发光食谱菜单板','后方烘焙操作台','拱门内的蛋糕小桌','拱门储物展示架','主蛋糕玻璃展示柜','中央裱花工作岛','薄荷色厨师机','蛋糕装饰转台','礼品包装柜台','礼盒堆叠','前方辅助备料台','试吃圆桌与座椅','粉格桌布','右下角花箱'],
+  ['花园石板小径','木质露台地板','悬挂星星灯','薄荷玻璃温室','奶油色茶具柜','玫瑰花藤拱门','中庭喷泉','植物饮品餐车','玻璃茶饮分配器','薄荷茶饮操作台','草莓种植推车','左侧藤编用餐区','右侧藤编用餐区','左侧花纹圆地毯','右侧花纹圆地毯','木桩庭院灯','蓝绣球花盆','左侧弧形花坛','右侧薰衣草花坛','萤火虫地灯串']
+];
+TARGET_SCENE_TASKS.forEach((names, chapter)=>names?.forEach((name, index)=>{DECORS[chapter*DECORS_PER_CHAPTER+index][0]=name}));
 let state,selected=null,history=[],dragFrom=null,touchDrag=null,ignoreTapUntil=0,timer,saveJob=null,sourceHint=null;
 const $=s=>document.querySelector(s),board=$('#board');
 function starterBoard(){const b=Array(SIZE).fill(null);TYPES.forEach((t,r)=>{b[r*7]={kind:'machine',type:t,level:0};b[r*7+1]={kind:'machine',type:t,level:0}});return b}
