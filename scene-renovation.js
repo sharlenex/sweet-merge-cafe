@@ -52,7 +52,7 @@ const WARM_TARGET_CUTS=[
 ];
 
 renderCafe=function(){
-  const unlocked=Math.min(CHAPTERS.length-1,Math.floor(state.decor.length/DECORS_PER_CHAPTER));
+  const unlocked=state.adminMode?CHAPTERS.length-1:Math.min(CHAPTERS.length-1,Math.floor(state.decor.length/DECORS_PER_CHAPTER));
   state.cafeChapter=Math.min(state.cafeChapter||0,unlocked);
   const c=state.cafeChapter,start=c*DECORS_PER_CHAPTER,end=start+DECORS_PER_CHAPTER;
   const chapter=CHAPTERS[c],scene=$('#cafeScene');
@@ -76,5 +76,16 @@ renderCafe=function(){
   document.querySelectorAll('[data-decor]').forEach(b=>b.onclick=()=>buyDecor(+b.dataset.decor));
   document.querySelectorAll('[data-chapter]').forEach(b=>b.onclick=()=>{state.cafeChapter=+b.dataset.chapter;render()});
 };
+
+function adminFillResources(){
+  state.adminMode=true;state.coins=999999;state.gems=99999;state.stars=9999;state.energy=MAX_ENERGY;state.energyAt=Date.now();state.level=50;state.xp=0;
+  $('#modal').classList.add('hidden');render();toast('管理员资源已拉满');
+}
+function adminUnlockAll(){state.adminMode=true;$('#modal').classList.add('hidden');render();toast('四家店铺均已解锁')}
+function adminRestoreChapter(){const start=state.cafeChapter*DECORS_PER_CHAPTER,end=start+DECORS_PER_CHAPTER;state.decor=state.decor.filter(i=>i<start||i>=end);$('#modal').classList.add('hidden');render();toast(`${CHAPTERS[state.cafeChapter].name} 已恢复为空房底图`)}
+function adminCompleteChapter(){const start=state.cafeChapter*DECORS_PER_CHAPTER;for(let i=start;i<start+DECORS_PER_CHAPTER;i++)if(!state.decor.includes(i))state.decor.push(i);$('#modal').classList.add('hidden');render();toast(`${CHAPTERS[state.cafeChapter].name} 已完成全部装修`)}
+function openAdminPanel(){showModal(`<h2>🛠 本地管理员模式</h2><p class="shop-note">此模式仅保存在当前设备，无需联网账号。</p><div class="admin-grid"><button class="modal-action" onclick="adminFillResources()">资源拉满：金币、钻石、体力、星星</button><button class="modal-action" onclick="adminUnlockAll()">解锁全部 4 家店铺</button><button class="modal-action admin-reset" onclick="adminRestoreChapter()">恢复原样：当前店铺仅保留底图</button><button class="modal-action" onclick="adminCompleteChapter()">完成当前店铺全部 20 项任务</button></div>`)}
+window.adminFillResources=adminFillResources;window.adminUnlockAll=adminUnlockAll;window.adminRestoreChapter=adminRestoreChapter;window.adminCompleteChapter=adminCompleteChapter;
+$('#adminBtn').onclick=openAdminPanel;
 
 render();

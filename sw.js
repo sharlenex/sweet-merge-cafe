@@ -1,4 +1,4 @@
-const APP_CACHE = 'sweet-merge-shell-v17';
+const APP_CACHE = 'sweet-merge-shell-v18';
 const ART_CACHE = 'sweet-merge-art-v7';
 const TYPES = ['coffee', 'cake', 'fruit'];
 const MACHINE_TYPES = ['coffee', 'cake', 'fruit', 'tea', 'bread', 'icecream', 'chocolate'];
