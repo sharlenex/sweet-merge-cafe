@@ -11,24 +11,32 @@ const SCENE_TASK_NAMES=[
 TARGET_SCENE_NAMES.forEach((name,index)=>{CHAPTERS[index].name=name});
 SCENE_TASK_NAMES.forEach((names,chapter)=>names?.forEach((name,index)=>{DECORS[chapter*DECORS_PER_CHAPTER+index][0]=name}));
 
+// Each completed task is a separate transparent sprite placed on the fixed room base.
+const SCENE_LAYER_LAYOUTS=[
+  [[8,40,19,3],[42,68,26,6],[43,5,20,5],[66,43,24,4],[20,70,15,3],[46,37,22,7],[9,25,16,4],[22,63,17,4],[30,32,21,3],[51,21,18,5],[39,45,20,7],[55,62,21,5],[35,69,15,5],[15,48,16,4],[29,14,18,4],[62,13,20,5],[77,29,19,3],[58,3,18,4],[71,68,23,5],[75,8,22,5]],
+  [[7,39,19,3],[43,6,24,6],[16,73,17,4],[65,33,24,5],[26,18,18,4],[9,58,20,4],[52,72,17,5],[35,43,20,6],[19,40,18,4],[67,9,22,5],[53,48,18,5],[72,65,22,5],[8,25,16,4],[31,63,18,4],[60,19,17,4],[76,38,19,3],[45,28,18,5],[74,5,18,4],[52,57,17,4],[75,78,18,4]],
+  [[7,41,20,3],[43,7,24,6],[18,72,17,4],[65,35,24,5],[27,18,18,4],[10,59,20,4],[52,72,17,5],[35,43,20,6],[19,41,18,4],[67,9,22,5],[53,48,18,5],[72,65,22,5],[8,25,16,4],[31,63,18,4],[60,19,17,4],[76,38,19,3],[45,28,18,5],[74,5,18,4],[52,57,17,4],[75,78,18,4]],
+  [[7,41,20,3],[43,7,24,6],[18,72,17,4],[65,35,24,5],[27,18,18,4],[10,59,20,4],[52,72,17,5],[35,43,20,6],[19,41,18,4],[67,9,22,5],[53,48,18,5],[72,65,22,5],[8,25,16,4],[31,63,18,4],[60,19,17,4],[76,38,19,3],[45,28,18,5],[74,5,18,4],[52,57,17,4],[75,78,18,4]]
+];
+
 renderCafe=function(){
   const unlocked=Math.min(CHAPTERS.length-1,Math.floor(state.decor.length/DECORS_PER_CHAPTER));
   state.cafeChapter=Math.min(state.cafeChapter||0,unlocked);
   const c=state.cafeChapter,start=c*DECORS_PER_CHAPTER,end=start+DECORS_PER_CHAPTER;
   const chapter=CHAPTERS[c],scene=$('#cafeScene');
-  const ownedCount=state.decor.filter(i=>i>=start&&i<end).length,composition=SCENE_COMPOSITIONS[c];
+  const ownedCount=state.decor.filter(i=>i>=start&&i<end).length;
   scene.className=`cafe-scene chapter-${c}${ownedCount===DECORS_PER_CHAPTER?' scene-finished':''}`;
   $('#cafeName').textContent=chapter.name;
   $('#chapterNav').innerHTML=CHAPTERS.map((x,i)=>`<button data-chapter="${i}" class="${i===c?'active':''}" ${i>unlocked?'disabled':''}>${i+1}. ${x.name}${i>unlocked?' 🔒':''}</button>`).join('');
-  scene.innerHTML=`<div class="scene-title">${chapter.name}</div><div class="scene-counter"><span>${['今日甜点','露台限定','新鲜出炉','花园特饮'][c]} · ${ownedCount}/${DECORS_PER_CHAPTER}</span></div>`;
-  scene.insertAdjacentHTML('beforeend',`<div class="scene-renovation-mask" style="--mask-opacity:${Math.max(.06,.72-ownedCount/DECORS_PER_CHAPTER*.66)}"></div><div class="scene-progress">🏡 ${ownedCount}/${DECORS_PER_CHAPTER}</div>`);
+  scene.innerHTML=`<div class="scene-title">${chapter.name}</div><div class="scene-progress">🏡 ${ownedCount}/${DECORS_PER_CHAPTER}</div>`;
   DECORS.slice(start,end).forEach((d,j)=>{
-    const i=start+j,art=d[4],layout=composition[j];
+    const i=start+j,art=d[4],layout=SCENE_LAYER_LAYOUTS[c][j];
+    if(state.decor.includes(i)&&layout)scene.innerHTML+=`<div class="decor" style="--decor-top:${layout[0]}%;--decor-left:${layout[1]}%;--decor-width:${layout[2]}%;--decor-z:${layout[3]}"><img src="assets/decor/decor-${art}.png" alt="${d[0]}"></div>`;
   });
   $('#decorList').innerHTML=DECORS.slice(start,end).map((d,j)=>{
     const i=start+j,art=d[4],owned=state.decor.includes(i),ok=state.stars>=d[2]&&state.coins>=d[3];
     const status=owned?'已融入目标场景':`⭐${d[2]}　🪙${d[3]} · +${DECOR_XP} XP 和基础机器`;
-    const thumbnail=`<span class="decor-task-number">${j+1}</span>`;
+    const thumbnail=`<img src="assets/decor/decor-${art}.png" alt="${d[0]}">`;
     return `<div class="decor-card ${owned?'owned':''}">${thumbnail}<div><b>${d[0]}</b><small>${status}</small></div><button ${owned||!ok?'disabled':''} data-decor="${i}">${owned?'完成':'装修'}</button></div>`;
   }).join('');
   document.querySelectorAll('[data-decor]').forEach(b=>b.onclick=()=>buyDecor(+b.dataset.decor));

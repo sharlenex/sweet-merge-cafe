@@ -1,11 +1,9 @@
-/* Target-scene chapters: a cohesive room slowly comes into focus as projects finish. */
-.cafe-scene.chapter-0{background:linear-gradient(rgba(255,244,219,.05),rgba(173,112,83,.05)),url("assets/scene-warm-v2.png") center/cover}
-.cafe-scene.chapter-1{background:linear-gradient(rgba(255,214,185,.05),rgba(132,89,150,.05)),url("assets/scene-terrace-v2.png") center/cover}
-.cafe-scene.chapter-2{background:linear-gradient(rgba(255,234,183,.04),rgba(140,88,49,.04)),url("assets/scene-bakery-v2.png") center/cover}
-.cafe-scene.chapter-3{background:linear-gradient(rgba(211,247,211,.04),rgba(93,171,143,.04)),url("assets/scene-garden-v2.png") center/cover}
-.cafe-scene .scene-renovation-mask{position:absolute;z-index:3;inset:0;pointer-events:none;background:rgba(255,246,220,var(--mask-opacity));backdrop-filter:blur(calc(var(--mask-opacity) * 5px)) saturate(.72);transition:background .45s ease,backdrop-filter .45s ease}
-.cafe-scene.scene-finished .scene-renovation-mask{display:none}
+/* Fixed base rooms with individual transparent furnishing layers. */
+.cafe-scene.chapter-0{background:linear-gradient(rgba(255,244,219,.03),rgba(173,112,83,.03)),url("assets/cafe-background.png") center/cover}
+.cafe-scene.chapter-1{background:linear-gradient(rgba(255,214,185,.03),rgba(132,89,150,.03)),url("assets/scene-terrace.png") center/cover}
+.cafe-scene.chapter-2{background:linear-gradient(rgba(255,234,183,.03),rgba(140,88,49,.03)),url("assets/scene-bakery.png") center/cover}
+.cafe-scene.chapter-3{background:linear-gradient(rgba(211,247,211,.03),rgba(93,171,143,.03)),url("assets/scene-garden.png") center/cover}
 .scene-progress{position:absolute;z-index:9;right:12px;top:14px;padding:6px 10px;border:2px solid #fff;border-radius:14px;background:rgba(255,250,229,.92);box-shadow:0 3px 0 rgba(121,82,47,.22);color:#765342;font-size:11px;font-weight:900}
 .decor-task-number{display:grid;place-items:center;flex:none;width:48px;height:48px;border:3px solid #fff;border-radius:16px;background:linear-gradient(145deg,#fff3be,#f3a76c);box-shadow:inset 0 -4px rgba(141,77,46,.16),0 3px 0 rgba(140,83,48,.2);color:#905143;font-size:19px;font-weight:900}
-.chapter-1 .scene-counter,.chapter-2 .scene-counter,.chapter-3 .scene-counter{display:none}
-@media(max-width:560px){.scene-progress{top:11px;right:9px;padding:5px 8px;font-size:10px}.cafe-scene .scene-renovation-mask{backdrop-filter:blur(calc(var(--mask-opacity) * 3px)) saturate(.75)}}
+.scene-counter{display:none}
+@media(max-width:560px){.scene-progress{top:11px;right:9px;padding:5px 8px;font-size:10px}}
