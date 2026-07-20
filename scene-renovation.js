@@ -8,6 +8,13 @@ const SCENE_TASK_NAMES=[
   ['花园石板小径','木质露台地板','悬挂星星灯','薄荷玻璃温室','奶油色茶具柜','玫瑰花藤拱门','中庭喷泉','植物饮品餐车','玻璃茶饮分配器','薄荷茶饮操作台','草莓种植推车','左侧藤编用餐区','右侧藤编用餐区','左侧花纹圆地毯','右侧花纹圆地毯','木桩庭院灯','蓝绣球花盆','左侧弧形花坛','右侧薰衣草花坛','萤火虫地灯串']
 ];
 
+TARGET_SCENE_NAMES.splice(0,4,'暖糖咖啡屋','柠檬暮光露台','奶油梦幻烘焙坊','星灯花园咖啡屋');
+SCENE_TASK_NAMES[0]=[
+  '焦糖木地板','奶油暖墙与顶部木质线条','落地窗框','蜜桃色窗帘','吊篮绿植',
+  '三盏花瓣吊灯','甜点菜单灯箱','杯具浮架','后场薄荷备餐柜','薄荷弧形服务吧台',
+  '复古意式咖啡机','咖啡豆研磨机','台式收银机','玻璃甜点罩','胡桃木甜点展示架（含藤蔓盆栽）',
+  '薄荷玻璃甜点柜','绣花奶油地毯','入口花箱','后排双人圆桌与椅子组','前排圆桌与椅子组'
+];
 TARGET_SCENE_NAMES.forEach((name,index)=>{CHAPTERS[index].name=name});
 SCENE_TASK_NAMES.forEach((names,chapter)=>names?.forEach((name,index)=>{DECORS[chapter*DECORS_PER_CHAPTER+index][0]=name}));
 
@@ -51,6 +58,32 @@ const WARM_TARGET_CUTS=[
   [{clip:'polygon(28% 63%,82% 63%,82% 91%,28% 91%)',z:12}]
 ];
 
+// Every completed task reveals a region of its own chapter's final painting.
+// There are no loose cross-chapter furniture stickers in this renderer.
+const TERRACE_TARGET_CUTS=[
+  [{clip:'polygon(0 44%,100% 39%,100% 88%,0 88%)',z:1}],[{clip:'polygon(0 80%,56% 80%,56% 100%,0 100%)',z:2}],[],[{clip:'polygon(0 24%,38% 24%,38% 63%,0 63%)',z:5}],
+  [{clip:'polygon(2% 32%,23% 32%,23% 49%,2% 49%)',z:7}],[{clip:'polygon(0 43%,33% 43%,33% 63%,0 63%)',z:7}],[{clip:'polygon(0 6%,42% 6%,42% 31%,0 31%)',z:5}],[{clip:'polygon(28% 12%,69% 12%,69% 46%,28% 46%)',z:4}],
+  [{clip:'polygon(0 14%,75% 14%,75% 29%,0 29%)',z:8}],[{clip:'polygon(20% 35%,45% 35%,45% 52%,20% 52%)',z:7}],[{clip:'polygon(38% 42%,70% 42%,70% 60%,38% 60%)',z:9}],[{clip:'polygon(46% 58%,93% 58%,93% 79%,46% 79%)',z:10}],
+  [{clip:'polygon(70% 25%,100% 25%,100% 49%,70% 49%)',z:8}],[{clip:'polygon(73% 40%,100% 40%,100% 58%,73% 58%)',z:8}],[{clip:'polygon(82% 31%,96% 31%,96% 50%,82% 50%)',z:10}],[{clip:'polygon(70% 49%,90% 49%,90% 61%,70% 61%)',z:11}],
+  [{clip:'polygon(69% 73%,94% 73%,94% 96%,69% 96%)',z:8}],[{clip:'polygon(0 73%,22% 73%,22% 96%,0 96%)',z:8}],[{clip:'polygon(0 51%,30% 51%,30% 66%,0 66%)',z:7}],[{clip:'polygon(39% 73%,66% 73%,66% 96%,39% 96%)',z:8}]
+];
+const BAKERY_TARGET_CUTS=[
+  [{clip:'polygon(0 32%,100% 32%,100% 100%,0 100%)',z:1}],[{clip:'polygon(0 0,100% 0,100% 16%,0 16%)',z:5}],[{clip:'polygon(0 5%,27% 5%,27% 45%,0 45%)',z:6}],[{clip:'polygon(0 19%,17% 19%,17% 35%,0 35%)',z:8}],
+  [{clip:'polygon(0 34%,21% 34%,21% 56%,0 56%)',z:7}],[{clip:'polygon(18% 14%,39% 14%,39% 44%,18% 44%)',z:6}],[{clip:'polygon(40% 12%,66% 12%,66% 27%,40% 27%)',z:7}],[{clip:'polygon(38% 26%,67% 26%,67% 44%,38% 44%)',z:7}],
+  [{clip:'polygon(65% 8%,92% 8%,92% 39%,65% 39%)',z:5}],[{clip:'polygon(73% 15%,91% 15%,91% 40%,73% 40%)',z:8}],[{clip:'polygon(63% 29%,100% 29%,100% 55%,63% 55%)',z:7}],[{clip:'polygon(19% 44%,76% 44%,76% 69%,19% 69%)',z:9}],
+  [{clip:'polygon(22% 39%,39% 39%,39% 57%,22% 57%)',z:11}],[{clip:'polygon(49% 44%,68% 44%,68% 56%,49% 56%)',z:11}],[{clip:'polygon(60% 55%,100% 55%,100% 76%,60% 76%)',z:8}],[{clip:'polygon(76% 49%,97% 49%,97% 63%,76% 63%)',z:10}],
+  [{clip:'polygon(0 57%,20% 57%,20% 77%,0 77%)',z:8}],[{clip:'polygon(23% 71%,66% 71%,66% 92%,23% 92%)',z:9}],[{clip:'polygon(19% 80%,70% 80%,70% 97%,19% 97%)',z:7}],[{clip:'polygon(75% 84%,100% 84%,100% 100%,75% 100%)',z:8}]
+];
+const GARDEN_TARGET_CUTS=[
+  [{clip:'polygon(0 80%,100% 80%,100% 100%,0 100%)',z:1}],[{clip:'polygon(14% 39%,92% 39%,92% 85%,14% 85%)',z:2}],[{clip:'polygon(0 4%,100% 4%,100% 31%,0 31%)',z:9}],[{clip:'polygon(0 14%,40% 14%,40% 50%,0 50%)',z:6}],
+  [{clip:'polygon(0 34%,18% 34%,18% 57%,0 57%)',z:7}],[{clip:'polygon(40% 10%,76% 10%,76% 46%,40% 46%)',z:7}],[{clip:'polygon(51% 25%,70% 25%,70% 46%,51% 46%)',z:8}],[{clip:'polygon(66% 29%,100% 29%,100% 57%,66% 57%)',z:7}],
+  [{clip:'polygon(74% 39%,100% 39%,100% 57%,74% 57%)',z:9}],[{clip:'polygon(70% 51%,100% 51%,100% 67%,70% 67%)',z:8}],[{clip:'polygon(80% 57%,100% 57%,100% 74%,80% 74%)',z:8}],[{clip:'polygon(5% 47%,44% 47%,44% 71%,5% 71%)',z:9}],
+  [{clip:'polygon(45% 47%,82% 47%,82% 71%,45% 71%)',z:9}],[{clip:'polygon(5% 59%,45% 59%,45% 75%,5% 75%)',z:7}],[{clip:'polygon(44% 59%,82% 59%,82% 75%,44% 75%)',z:7}],[{clip:'polygon(0 65%,19% 65%,19% 86%,0 86%)',z:8}],
+  [{clip:'polygon(0 63%,23% 63%,23% 81%,0 81%)',z:9}],[{clip:'polygon(0 69%,33% 69%,33% 100%,0 100%)',z:8}],[{clip:'polygon(64% 69%,100% 69%,100% 100%,64% 100%)',z:8}],[{clip:'polygon(18% 72%,82% 72%,82% 86%,18% 86%)',z:10}]
+];
+const TARGET_SCENE_IMAGES=['warm-cafe-target.png','terrace-cafe-target.png','bakery-cafe-target.png','garden-cafe-target.png'];
+const TARGET_SCENE_CUTS=[WARM_TARGET_CUTS,TERRACE_TARGET_CUTS,BAKERY_TARGET_CUTS,GARDEN_TARGET_CUTS];
+
 renderCafe=function(){
   const unlocked=state.adminMode?CHAPTERS.length-1:Math.min(CHAPTERS.length-1,Math.floor(state.decor.length/DECORS_PER_CHAPTER));
   state.cafeChapter=Math.min(state.cafeChapter||0,unlocked);
@@ -62,15 +95,16 @@ renderCafe=function(){
   $('#chapterNav').innerHTML=CHAPTERS.map((x,i)=>`<button data-chapter="${i}" class="${i===c?'active':''}" ${i>unlocked?'disabled':''}>${i+1}. ${x.name}${i>unlocked?' 🔒':''}</button>`).join('');
   scene.innerHTML=`<div class="scene-title">${chapter.name}</div><div class="scene-progress">🏡 ${ownedCount}/${DECORS_PER_CHAPTER}</div>`;
   DECORS.slice(start,end).forEach((d,j)=>{
-    const i=start+j,art=SCENE_ASSET_MAPS[c][j],layout=SCENE_LAYER_LAYOUTS[c][j];
+    const i=start+j;
     if(!state.decor.includes(i))return;
-    if(c===0){(WARM_TARGET_CUTS[j]||[]).forEach(cut=>{scene.innerHTML+=`<div class="warm-scene-layer" style="--scene-clip:${cut.clip};--scene-z:${cut.z}"></div>`});return}
-    if(art!==null&&layout[2])scene.innerHTML+=`<div class="decor" style="--decor-top:${layout[0]}%;--decor-left:${layout[1]}%;--decor-width:${layout[2]}%;--decor-z:${layout[3]}"><img src="assets/decor/decor-${art}.png" alt="${d[0]}"></div>`;
+    (TARGET_SCENE_CUTS[c][j]||[]).forEach(cut=>{
+      scene.innerHTML+=`<div class="target-scene-layer" style="--scene-clip:${cut.clip};--scene-z:${cut.z};background-image:url('assets/${TARGET_SCENE_IMAGES[c]}')"></div>`;
+    });
   });
   $('#decorList').innerHTML=DECORS.slice(start,end).map((d,j)=>{
-    const i=start+j,art=SCENE_ASSET_MAPS[c][j],owned=state.decor.includes(i),ok=state.stars>=d[2]&&state.coins>=d[3];
-    const status=owned?'已融入目标场景':`⭐${d[2]}　🪙${d[3]} · +${DECOR_XP} XP 和基础机器`;
-    const thumbnail=art===null?`<span class="decor-task-number">${j+1}</span>`:`<img src="assets/decor/decor-${art}.png" alt="${d[0]}">`;
+    const i=start+j,owned=state.decor.includes(i),ok=state.stars>=d[2]&&state.coins>=d[3];
+    const status=owned?'已融入目标场景':`⭐ ${d[2]}　🪙 ${d[3]} · +${DECOR_XP} XP`;
+    const thumbnail=`<span class="decor-task-number">${j+1}</span>`;
     return `<div class="decor-card ${owned?'owned':''}">${thumbnail}<div><b>${d[0]}</b><small>${status}</small></div><button ${owned||!ok?'disabled':''} data-decor="${i}">${owned?'完成':'装修'}</button></div>`;
   }).join('');
   document.querySelectorAll('[data-decor]').forEach(b=>b.onclick=()=>buyDecor(+b.dataset.decor));

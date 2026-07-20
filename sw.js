@@ -1,5 +1,5 @@
-const APP_CACHE = 'sweet-merge-shell-v18';
-const ART_CACHE = 'sweet-merge-art-v7';
+const APP_CACHE = 'sweet-merge-shell-v19';
+const ART_CACHE = 'sweet-merge-art-v8';
 const TYPES = ['coffee', 'cake', 'fruit'];
 const MACHINE_TYPES = ['coffee', 'cake', 'fruit', 'tea', 'bread', 'icecream', 'chocolate'];
 const GENERATED_ITEM_TYPES = ['tea', 'bread', 'icecream', 'chocolate'];
@@ -12,7 +12,10 @@ const ITEM_ASSETS = [
 ];
 const MACHINE_ASSETS = MACHINE_TYPES.flatMap(type => Array.from({ length: 12 }, (_, level) => `./assets/machines/${type}-${level}.png`));
 const EXTRA_ASSETS = [
-  './assets/warm-cafe-base.png', './assets/warm-cafe-target.png', './assets/scene-terrace.png', './assets/scene-bakery.png', './assets/scene-garden.png',
+  './assets/warm-cafe-base.png', './assets/warm-cafe-target.png',
+  './assets/terrace-cafe-base.png', './assets/terrace-cafe-target.png',
+  './assets/bakery-cafe-base.png', './assets/bakery-cafe-target.png',
+  './assets/garden-cafe-base.png', './assets/garden-cafe-target.png',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png', './assets/icons/apple-touch-icon.png',
   ...Array.from({ length: 80 }, (_, i) => `./assets/decor/decor-${i}.png`),
   ...Array.from({ length: 3 }, (_, i) => `./assets/characters/customer-${i}.png`)

@@ -1,11 +1,11 @@
 /* Fixed base rooms with individual transparent furnishing layers. */
 .cafe-scene{aspect-ratio:9/16;min-height:0!important;height:auto;background-size:100% 100%!important}
 .cafe-scene.chapter-0{background:linear-gradient(rgba(255,244,219,.02),rgba(173,112,83,.02)),url("assets/warm-cafe-base.png") center/cover}
-.cafe-scene.chapter-1{background:linear-gradient(rgba(255,214,185,.03),rgba(132,89,150,.03)),url("assets/scene-terrace.png") center/cover}
-.cafe-scene.chapter-2{background:linear-gradient(rgba(255,234,183,.03),rgba(140,88,49,.03)),url("assets/scene-bakery.png") center/cover}
-.cafe-scene.chapter-3{background:linear-gradient(rgba(211,247,211,.03),rgba(93,171,143,.03)),url("assets/scene-garden.png") center/cover}
+.cafe-scene.chapter-1{background:linear-gradient(rgba(255,214,185,.02),rgba(132,89,150,.02)),url("assets/terrace-cafe-base.png") center/cover}
+.cafe-scene.chapter-2{background:linear-gradient(rgba(255,234,183,.02),rgba(140,88,49,.02)),url("assets/bakery-cafe-base.png") center/cover}
+.cafe-scene.chapter-3{background:linear-gradient(rgba(211,247,211,.02),rgba(93,171,143,.02)),url("assets/garden-cafe-base.png") center/cover}
 .scene-progress{position:absolute;z-index:9;right:12px;top:14px;padding:6px 10px;border:2px solid #fff;border-radius:14px;background:rgba(255,250,229,.92);box-shadow:0 3px 0 rgba(121,82,47,.22);color:#765342;font-size:11px;font-weight:900}
-.warm-scene-layer{position:absolute;z-index:var(--scene-z);inset:0;pointer-events:none;background:url("assets/warm-cafe-target.png") center/cover;background-size:100% 100%;clip-path:var(--scene-clip)}
+.target-scene-layer{position:absolute;z-index:var(--scene-z);inset:0;pointer-events:none;background-position:center;background-repeat:no-repeat;background-size:100% 100%;clip-path:var(--scene-clip)}
 .cafe-heading-actions{display:flex;align-items:center;gap:7px}.admin-button{border:2px solid #fff;border-radius:13px;padding:7px 9px;background:linear-gradient(#b9d9ff,#7db2ef);box-shadow:0 3px 0 #5285c1;color:#fff;font:inherit;font-size:11px;font-weight:900;cursor:pointer}.admin-grid{display:grid;gap:9px}.admin-reset{background:#d89580!important;box-shadow:0 3px 0 #a86450!important}
 .decor-task-number{display:grid;place-items:center;flex:none;width:48px;height:48px;border:3px solid #fff;border-radius:16px;background:linear-gradient(145deg,#fff3be,#f3a76c);box-shadow:inset 0 -4px rgba(141,77,46,.16),0 3px 0 rgba(140,83,48,.2);color:#905143;font-size:19px;font-weight:900}
 .scene-counter{display:none}
