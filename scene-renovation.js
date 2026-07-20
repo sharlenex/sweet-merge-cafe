@@ -21,10 +21,34 @@ const SCENE_LAYER_LAYOUTS=[
 // Structural upgrades are represented by the room itself; only real furnishings
 // receive a sprite. This keeps a café readable instead of turning it into a pile.
 const SCENE_ASSET_MAPS=[
-  [null,null,null,18,2,8,6,14,7,null,null,null,9,null,10,1,17,2,3,3],
+  [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
   [null,null,null,21,null,23,null,25,null,null,30,31,32,33,34,35,36,37,null,39],
   [null,41,null,43,44,null,46,null,null,null,50,51,52,53,54,null,56,57,null,59],
   [null,null,62,63,64,65,66,67,null,69,70,71,72,73,null,75,null,77,78,null]
+];
+// Exact cutouts from the approved Warm Sugar Café target illustration.  Each
+// task reveals only its own region over the matching empty-room base image.
+const WARM_TARGET_CUTS=[
+  [{clip:'polygon(0 52%,100% 48%,100% 100%,0 100%)',z:1}],
+  [{clip:'polygon(0 0,100% 0,100% 8%,0 8%)',z:2}],
+  [],
+  [{clip:'polygon(0 7%,11% 7%,11% 39%,0 39%)',z:4},{clip:'polygon(20% 7%,34% 7%,34% 39%,20% 39%)',z:4}],
+  [{clip:'polygon(0 14%,17% 14%,17% 37%,0 37%)',z:5}],
+  [{clip:'polygon(11% 4%,19% 4%,19% 24%,11% 24%)',z:6},{clip:'polygon(26% 5%,35% 5%,35% 24%,26% 24%)',z:6},{clip:'polygon(40% 6%,49% 6%,49% 24%,40% 24%)',z:6}],
+  [{clip:'polygon(46% 11%,62% 11%,62% 26%,46% 26%)',z:5}],
+  [{clip:'polygon(34% 24%,61% 24%,61% 35%,34% 35%)',z:5}],
+  [{clip:'polygon(40% 35%,64% 35%,64% 50%,40% 50%)',z:4}],
+  [{clip:'polygon(0 47%,29% 47%,29% 61%,0 61%)',z:4},{clip:'polygon(29% 53%,58% 53%,58% 62%,29% 62%)',z:4}],
+  [{clip:'polygon(5% 27%,34% 27%,34% 49%,5% 49%)',z:7}],
+  [{clip:'polygon(29% 28%,40% 28%,40% 44%,29% 44%)',z:8}],
+  [{clip:'polygon(24% 40%,45% 40%,45% 52%,24% 52%)',z:9}],
+  [{clip:'polygon(36% 42%,50% 42%,50% 53%,36% 53%)',z:10}],
+  [{clip:'polygon(77% 17%,100% 17%,100% 41%,77% 41%)',z:5}],
+  [{clip:'polygon(63% 39%,100% 39%,100% 61%,63% 61%)',z:7}],
+  [{clip:'polygon(0 58%,35% 58%,35% 78%,0 78%)',z:3}],
+  [{clip:'polygon(0 72%,18% 72%,18% 96%,0 96%)',z:6}],
+  [{clip:'polygon(43% 51%,91% 51%,91% 73%,43% 73%)',z:11}],
+  [{clip:'polygon(28% 63%,82% 63%,82% 91%,28% 91%)',z:12}]
 ];
 
 renderCafe=function(){
@@ -39,7 +63,9 @@ renderCafe=function(){
   scene.innerHTML=`<div class="scene-title">${chapter.name}</div><div class="scene-progress">🏡 ${ownedCount}/${DECORS_PER_CHAPTER}</div>`;
   DECORS.slice(start,end).forEach((d,j)=>{
     const i=start+j,art=SCENE_ASSET_MAPS[c][j],layout=SCENE_LAYER_LAYOUTS[c][j];
-    if(state.decor.includes(i)&&art!==null&&layout[2])scene.innerHTML+=`<div class="decor" style="--decor-top:${layout[0]}%;--decor-left:${layout[1]}%;--decor-width:${layout[2]}%;--decor-z:${layout[3]}"><img src="assets/decor/decor-${art}.png" alt="${d[0]}"></div>`;
+    if(!state.decor.includes(i))return;
+    if(c===0){(WARM_TARGET_CUTS[j]||[]).forEach(cut=>{scene.innerHTML+=`<div class="warm-scene-layer" style="--scene-clip:${cut.clip};--scene-z:${cut.z}"></div>`});return}
+    if(art!==null&&layout[2])scene.innerHTML+=`<div class="decor" style="--decor-top:${layout[0]}%;--decor-left:${layout[1]}%;--decor-width:${layout[2]}%;--decor-z:${layout[3]}"><img src="assets/decor/decor-${art}.png" alt="${d[0]}"></div>`;
   });
   $('#decorList').innerHTML=DECORS.slice(start,end).map((d,j)=>{
     const i=start+j,art=SCENE_ASSET_MAPS[c][j],owned=state.decor.includes(i),ok=state.stars>=d[2]&&state.coins>=d[3];
